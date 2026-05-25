@@ -19,16 +19,22 @@
     
     <div id="berita" class="py-20 px-4 md:px-12 bg-white">
         <h2 class="text-3xl font-bold text-center mb-12">Berita Terkini</h2>
-                <div class="relative">
-                                {{ $news->content }}
-                            </p>
+        <div class="relative">
+            <div id="newsSlider" class="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-4">
+                @foreach($all_news as $news)
+                <div class="min-w-[300px] max-w-[300px] bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex-shrink-0">
+                    <img src="{{ $news->image_url }}" alt="{{ $news->title }}" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-gray-800 mb-2 leading-snug">{{ $news->title }}</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed line-clamp-3">
+                            {{ $news->content }}
+                        </p>
 
-                            <div class="card-actions justify-end mt-4">
-                                <a href="/baca/{{ $news->id }}"
+                        <div class="card-actions justify-end mt-4">
+                            <a href="/baca/{{ $news->id }}"
                                 class="text-[#bf9000] font-semibold hover:text-[#a37a00] transition duration-300">
-                                    Baca Selengkapnya →
-                                </a>
-                            </div>
+                                Baca Selengkapnya →
+                            </a>
                         </div>
                     </div>
                 </div>
