@@ -10,26 +10,88 @@
 <body class="font-sans antialiased bg-base-100">
     
     <div class="navbar bg-white shadow-sm sticky top-0 z-50">
-    <div class="container mx-auto px-4 flex justify-between items-center w-full">
-        
-        <div class="navbar-start w-auto">
+    <div class="container mx-auto px-4 w-full">
+
+        <div class="flex justify-between items-center py-3">
+
+            <div class="flex items-center gap-3">
                 <a href="/">
-            <img src="{{ asset('images/logo.jpg') }}" alt="Logo PesMaQu" class="h-12 w-auto">
+                    <img src="{{ asset('images/logo.jpg') }}"
+                         alt="Logo PesMaQu"
+                         class="h-12 w-auto">
                 </a>
+            </div>
+
+            <div class="hidden lg:flex items-center gap-8 font-medium text-gray-700">
+                <a href="/" class="hover:text-[#bf9000] transition">
+                    Beranda
+                </a>
+
+                <a href="/tentang-kami" class="hover:text-[#bf9000] transition">
+                    Tentang Kami
+                </a>
+
+                <a href="/program-akademik" class="hover:text-[#bf9000] transition">
+                    Program Akademik
+                </a>
+
+                <a href="/#berita" class="hover:text-[#bf9000] transition">
+                    Berita
+                </a>
+            </div>
+
+            <div class="hidden lg:flex items-center gap-5">
+                <a href="/login"
+                   class="font-semibold text-gray-500 hover:text-[#bf9000] transition">
+                    Login Admin
+                </a>
+
+                <a href="/ppdb"
+                   class="bg-[#bf9000] hover:bg-[#a37a00] text-white font-bold py-2.5 px-6 rounded-full shadow-md transition duration-300">
+                    PPDB Online
+                </a>
+            </div>
+
+            <button id="menuButton"
+                    class="lg:hidden text-3xl text-[#bf9000]">
+                ☰
+            </button>
+
         </div>
 
-        <div class="navbar-center hidden lg:flex">
-            <ul class="flex gap-8 font-medium text-gray-700">
-                <li><a href="/" class="hover:text-[#bf9000] transition">Beranda</a></li>
-                <li><a href="/tentang-kami" class="hover:text-[#bf9000] transition">Tentang Kami</a></li>
-                <li><a href="/program-akademik" class="hover:text-[#bf9000] transition">Program Akademik</a></li>
-                <li><a href="/#berita" class="hover:text-[#bf9000] transition">Berita</a></li>
-            </ul>
-        </div>
+        <div id="mobileMenu"
+            class="hidden lg:hidden flex flex-col gap-4 pb-4 font-medium text-gray-700 border-t border-gray-100 pt-4 mt-2">
 
-        <div class="navbar-end w-auto flex items-center gap-5">
-            <a href="/login" class="font-semibold text-gray-500 hover:text-[#bf9000] transition hidden sm:block">Login Admin</a>
-            <a href="/ppdb" class="bg-[#bf9000] hover:bg-[#a37a00] text-white font-bold py-2.5 px-6 rounded-full shadow-md transition duration-300">PPDB Online</a>
+            <a href="/"
+               class="hover:text-[#bf9000] transition">
+                Beranda
+            </a>
+
+            <a href="/tentang-kami"
+               class="hover:text-[#bf9000] transition">
+                Tentang Kami
+            </a>
+
+            <a href="/program-akademik"
+               class="hover:text-[#bf9000] transition">
+                Program Akademik
+            </a>
+
+            <a href="/#berita"
+               class="hover:text-[#bf9000] transition">
+                Berita
+            </a>
+
+            <a href="/login"
+               class="hover:text-[#bf9000] transition">
+                Login Admin
+            </a>
+
+            <a href="/ppdb"
+               class="bg-[#bf9000] hover:bg-[#a37a00] text-white font-bold py-2.5 px-6 rounded-full shadow-md transition duration-300 text-center">
+                PPDB Online
+            </a>
+
         </div>
 
     </div>
@@ -85,5 +147,22 @@
         </div>
     </div>
 </footer>
+<script>
+    const menuButton = document.getElementById('menuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+
+    // Membuka/menutup menu saat tombol ☰ diklik
+    menuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Otomatis menutup menu saat salah satu link diklik
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+    });
+</script>
 </body>
 </html>
