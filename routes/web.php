@@ -59,3 +59,15 @@ Route::get('/jalankan-migrasi-rahasia', function () {
 
 Route::patch('/ppdb/{id}/status', [RegistrationController::class, 'updateStatus'])->middleware(['auth', 'verified']);
 require __DIR__.'/auth.php';
+
+Route::get('/buat-admin-rahasia', function () {
+    // Sesuaikan dengan nama Model dan field yang kamu gunakan (misal: User atau Admin)
+    $admin = \App\Models\User::create([
+        'name' => 'admin',
+        'email' => 'anantaakpra101@gmail.com', // <-- Ganti dengan email loginmu
+        'password' => bcrypt('12345678'), // <-- Ganti dengan password yang kamu mau
+        // 'role' => 'admin', // <-- Hilangkan tanda // di depan jika kamu menggunakan sistem role/hak akses
+    ]);
+
+    return 'Mantap! Akun Admin berhasil didaftarkan ke database!';
+});
