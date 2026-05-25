@@ -24,7 +24,7 @@
             
             <div id="newsSlider" class="flex overflow-x-auto gap-6 pb-4 snap-x no-scrollbar">
                 
-                @foreach($news as $item)
+                @foreach($all_news as $item)
                 
                 <div class="flex-none w-80 bg-white border border-gray-200 shadow-xl rounded-xl snap-center flex flex-col">
                     <figure>
