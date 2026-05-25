@@ -19,21 +19,56 @@
     
     <div id="berita" class="py-20 px-4 md:px-12 bg-white">
         <h2 class="text-3xl font-bold text-center mb-12">Berita Terkini</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            @foreach($all_news as $news)
-            <div class="card bg-base-100 shadow-xl overflow-hidden border border-base-200">
-                <figure><img src="{{ $news->image_url }}" alt="berita" class="h-48 w-full object-cover" /></figure>
-                <div class="card-body p-6">
-                    <h2 class="card-title text-[#bf9000] font-bold">{{ $news->title }}</h2>
-                    
-                    <p class="text-gray-600 line-clamp-3">{{ $news->content }}</p>
-                    
-                    <div class="card-actions justify-end mt-4">
-                        <a href="/baca/{{ $news->id }}" class="text-[#bf9000] font-semibold hover:text-[#a37a00] transition duration-300">Baca Selengkapnya →</a>
+                <div class="relative">
+                                {{ $news->content }}
+                            </p>
+
+                            <div class="card-actions justify-end mt-4">
+                                <a href="/baca/{{ $news->id }}"
+                                class="text-[#bf9000] font-semibold hover:text-[#a37a00] transition duration-300">
+                                    Baca Selengkapnya →
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
+
+            <div class="flex justify-center gap-4 mt-6">
+                <button onclick="scrollSlider(-1)"
+                    class="bg-[#bf9000] hover:bg-[#a37a00] text-white px-5 py-2 rounded-full">
+                    ←
+                </button>
+
+                <button onclick="scrollSlider(1)"
+                    class="bg-[#bf9000] hover:bg-[#a37a00] text-white px-5 py-2 rounded-full">
+                    →
+                </button>
+            </div>
         </div>
+
+        <style>
+            .no-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+
+            .no-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+        </style>
+
+        <script>
+            function scrollSlider(direction) {
+                const slider = document.getElementById('newsSlider');
+                const scrollAmount = 400;
+
+                slider.scrollBy({
+                    left: direction * scrollAmount,
+                    behavior: 'smooth'
+                });
+            }
+        </script>
     </div>
 @endsection
