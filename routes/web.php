@@ -52,22 +52,5 @@ Route::middleware('auth')->group(function () {
 Route::get('/ppdb', [RegistrationController::class, 'create']);
 Route::post('/ppdb', [RegistrationController::class, 'store']);
 
-Route::get('/jalankan-migrasi-rahasia', function () {
-    \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
-    return 'Mantap! Migrasi Database Sukses di Server Railway!';
-});
-
 Route::patch('/ppdb/{id}/status', [RegistrationController::class, 'updateStatus'])->middleware(['auth', 'verified']);
 require __DIR__.'/auth.php';
-
-Route::get('/buat-admin-rahasia', function () {
-    // Sesuaikan dengan nama Model dan field yang kamu gunakan (misal: User atau Admin)
-    $admin = \App\Models\User::create([
-        'name' => 'admin',
-        'email' => 'anantaakpra101@gmail.com', // <-- Ganti dengan email loginmu
-        'password' => bcrypt('12345678'), // <-- Ganti dengan password yang kamu mau
-        // 'role' => 'admin', // <-- Hilangkan tanda // di depan jika kamu menggunakan sistem role/hak akses
-    ]);
-
-    return 'Mantap! Akun Admin berhasil didaftarkan ke database!';
-});
