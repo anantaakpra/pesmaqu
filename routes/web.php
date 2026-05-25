@@ -9,12 +9,12 @@ use App\Http\Controllers\NewsController;
 
 // Rute publik untuk membaca detail berita
 Route::get('/baca/{id}', [App\Http\Controllers\NewsController::class, 'show']);
-Route::get('/', function () {
-    // Ambil semua berita dari database
-    $all_news = News::latest()->get();
-    
-    // Kirim variabel $all_news ke halaman welcome
-    return view('welcome', compact('all_news'));
+oute::get('/', function () {
+    // Ambil semua berita dari database (bisa dilimit misal 5 berita terbaru)
+    $news = News::latest()->take(5)->get(); 
+
+    // Kirim variabel $news ke tampilan 'welcome' (atau 'frontend', sesuaikan dengan namamu)
+    return view('welcome', compact('news')); 
 });
 // Rute untuk halaman statis
 Route::view('/tentang-kami', 'about');
