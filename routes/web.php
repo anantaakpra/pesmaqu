@@ -52,5 +52,10 @@ Route::middleware('auth')->group(function () {
 Route::get('/ppdb', [RegistrationController::class, 'create']);
 Route::post('/ppdb', [RegistrationController::class, 'store']);
 
+Route::get('/jalankan-migrasi-rahasia', function () {
+    \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+    return 'Mantap! Migrasi Database Sukses di Server Railway!';
+});
+
 Route::patch('/ppdb/{id}/status', [RegistrationController::class, 'updateStatus'])->middleware(['auth', 'verified']);
 require __DIR__.'/auth.php';
