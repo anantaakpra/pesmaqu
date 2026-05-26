@@ -17,7 +17,7 @@
     </div>
     </div>
     
-<div id="berita" class="py-20 px-4 md:px-8 bg-gray-50">
+<div id="berita" class="py-20 px-4 md:px-8 bg-gray-50 scroll-mt-24">
     <div class="max-w-7xl mx-auto">
 
         <div class="text-center mb-12">
@@ -28,17 +28,11 @@
             </p>
         </div>
 
-        <div class="relative px-12 md:px-16">
-
-            <button onclick="scrollSlider(-1)"
-                class="absolute left-0 top-1/2 -translate-y-1/2 bg-[#bf9000] hover:bg-[#a37a00] text-white w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full shadow-lg transition duration-300 z-10">
-                ←
-            </button>
-
+        <div class="relative px-2 md:px-6">
             <div id="newsSlider" class="flex overflow-x-auto gap-6 pb-4 snap-x no-scrollbar cursor-grab select-none">
                 @foreach($news as $item)
                 <div class="flex-none w-[300px] md:w-[340px] bg-white rounded-2xl shadow-sm border border-gray-100 snap-center flex flex-col overflow-hidden transition-transform hover:-translate-y-1 duration-300">
-                    <img src="{{ asset('storage/' . $item->image_url) }}" alt="Gambar Berita" class="w-full h-52 object-cover" />
+                    <img src="{{ asset('storage/' . $item->image_url) }}" alt="Gambar Berita" class="w-full h-52 object-cover pointer-events-none" />
                     <div class="p-6 flex flex-col flex-grow">
                         <div class="flex items-center gap-2 text-gray-400 text-xs font-medium mb-3">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -46,8 +40,8 @@
                             </svg>
                             <span>{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y') }}</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-2 text-gray-900">{{ $item->title }}</h3>
-                        <p class="text-gray-500 text-sm line-clamp-2 mb-6">{{ $item->content }}</p>
+                        <h3 class="text-xl font-bold mb-2 text-gray-900 select-text">{{ $item->title }}</h3>
+                        <p class="text-gray-500 text-sm line-clamp-2 mb-6 select-text">{{ $item->content }}</p>
                         <div class="mt-auto">
                             <a href="/baca/{{ $item->id }}"
                                class="text-[#bf9000] font-bold text-sm hover:text-[#a37a00] transition flex items-center gap-2">
@@ -58,11 +52,6 @@
                 </div>
                 @endforeach
             </div>
-
-            <button onclick="scrollSlider(1)"
-                class="absolute right-0 top-1/2 -translate-y-1/2 bg-[#bf9000] hover:bg-[#a37a00] text-white w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full shadow-lg transition duration-300 z-10">
-                →
-            </button>
         </div>
 
         {{-- Dots indicator --}}
@@ -105,11 +94,6 @@
             e.preventDefault();
             slider.scrollLeft = scrollLeft - (e.pageX - slider.offsetLeft - startX) * 2;
         });
-
-        window.scrollSlider = function(dir) {
-            const cardWidth = (slider.querySelector(':scope > div')?.offsetWidth || 340) + 24;
-            slider.scrollBy({ left: dir * cardWidth, behavior: 'smooth' });
-        };
 
         function buildDots() {
             const cards = slider.querySelectorAll(':scope > div');
