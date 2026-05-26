@@ -6,16 +6,25 @@
 <div class="bg-gray-50 py-16 px-4 md:px-8 min-h-screen">
     <div class="max-w-3xl mx-auto">
         
-        <div class="text-center mb-10">
+        <div class="text-center mb-6">
             <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3 tracking-tight">Pendaftaran Santri Baru</h1>
             <p class="text-slate-500 text-sm md:text-base">Silakan lengkapi data diri Anda di bawah ini dengan benar.</p>
         </div>
 
         <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-slate-100">
             
+            @if (session('success'))
+                <div class="mb-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-xl text-sm font-bold flex items-center gap-3 shadow-sm">
+                    <div class="bg-green-200/50 p-1.5 rounded-full">
+                        <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    {{ session('success') }}
+                </div>
+            @endif
+
             @if ($errors->any())
-                <div class="mb-6 p-4 bg-red-50 border border-red-200 text-red-600 rounded-xl text-sm">
-                    <ul class="list-disc pl-5">
+                <div class="mb-6 p-4 bg-red-50 border border-red-200 text-red-600 rounded-xl text-sm shadow-sm">
+                    <ul class="list-disc pl-5 font-medium">
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
