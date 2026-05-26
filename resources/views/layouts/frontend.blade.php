@@ -10,80 +10,57 @@
 <body class="font-sans antialiased bg-base-100">
     
     <div class="navbar bg-white shadow-sm sticky top-0 z-50">
-    <div class="container mx-auto px-4 w-full">
+        <div class="container mx-auto px-4 w-full">
+            <div class="flex justify-between items-center h-20">
 
-        <div class="flex justify-between items-center py-3">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center gap-3">
+                        <img src="{{ asset('images/logo.jpg') }}" alt="Logo PesMaQu" class="h-12 w-auto object-contain">
+                        <div class="flex flex-col justify-center">
+                            <span class="font-black text-xl tracking-wider text-slate-900 leading-none">PESMAQU</span>
+                            <span class="text-[10px] text-[#bf9000] font-bold tracking-widest uppercase mt-1.5 leading-none">Pesantren Mahasiswa Al-Qur'an</span>
+                        </div>
+                    </a>
+                </div>
 
-    {{-- Logo --}}
-    <div class="flex items-center gap-3">
-        <a href="/">
-            <img src="{{ asset('images/logo.jpg') }}"
-                 alt="Logo PesMaQu"
-                 class="h-12 w-auto">
-        </a>
-    </div>
+                <div class="hidden lg:flex items-center gap-8 font-semibold text-gray-600 h-full">
+                    <a href="/" class="hover:text-[#bf9000] border-b-2 border-transparent hover:border-[#bf9000] py-2 transition duration-200">Beranda</a>
+                    <a href="/tentang-kami" class="hover:text-[#bf9000] border-b-2 border-transparent hover:border-[#bf9000] py-2 transition duration-200">Tentang Kami</a>
+                    <a href="/program-akademik" class="hover:text-[#bf9000] border-b-2 border-transparent hover:border-[#bf9000] py-2 transition duration-200">Program Akademik</a>
+                    <a href="/#berita" class="hover:text-[#bf9000] border-b-2 border-transparent hover:border-[#bf9000] py-2 transition duration-200">Berita</a>
+                </div>
 
-    {{-- Nav links desktop --}}
-    <div class="hidden lg:flex items-center gap-8 font-medium text-gray-700">
-        <a href="/" class="relative pb-1 {{ request()->is('/') ? 'text-[#bf9000] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#bf9000]' : 'hover:text-[#bf9000]' }} transition">
-            Beranda
-        </a>
-        <a href="/tentang-kami" class="relative pb-1 {{ request()->is('tentang-kami') ? 'text-[#bf9000] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#bf9000]' : 'hover:text-[#bf9000]' }} transition">
-            Tentang Kami
-        </a>
-        <a href="/program-akademik" class="relative pb-1 {{ request()->is('program-akademik') ? 'text-[#bf9000] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#bf9000]' : 'hover:text-[#bf9000]' }} transition">
-            Program Akademik
-        </a>
-        <a href="/#berita" class="hover:text-[#bf9000] transition">
-            Berita
-        </a>
-    </div>
+                <div class="hidden lg:flex items-center h-full">
+                    <a href="/ppdb" class="bg-[#bf9000] hover:bg-[#a37a00] text-white font-bold py-2.5 px-6 rounded-full shadow-md transition duration-300 dynamic-center-btn">
+                        PPDB Online
+                    </a>
+                </div>
 
-    {{-- Kanan desktop: PPDB + titik tiga --}}
-    <div class="hidden lg:flex items-center gap-3">
-        <a href="/ppdb"
-           class="bg-[#bf9000] hover:bg-[#a37a00] text-white font-bold py-2.5 px-6 rounded-full shadow-md transition duration-300">
-            PPDB Online
-        </a>
+                <div class="lg:hidden flex items-center">
+                    <button id="menuButton" class="text-3xl text-gray-500 hover:text-[#bf9000] p-1 focus:outline-none select-none leading-none">
+                        &#8942;
+                    </button>
+                </div>
 
-        {{-- Titik tiga — Login Admin tersembunyi, desktop saja --}}
-        <div class="relative" x-data="{ open: false }" @click.outside="open = false">
-            <button @click="open = !open"
-                    class="w-9 h-9 flex items-center justify-center rounded-full border border-gray-200 hover:bg-gray-100 transition duration-200 text-gray-500">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <circle cx="12" cy="5" r="1.5"/>
-                    <circle cx="12" cy="12" r="1.5"/>
-                    <circle cx="12" cy="19" r="1.5"/>
-                </svg>
-            </button>
-            <div x-show="open"
-                 x-transition:enter="transition ease-out duration-150"
-                 x-transition:enter-start="opacity-0 scale-95"
-                 x-transition:enter-end="opacity-100 scale-100"
-                 x-transition:leave="transition ease-in duration-100"
-                 x-transition:leave-start="opacity-100 scale-100"
-                 x-transition:leave-end="opacity-0 scale-95"
-                 class="absolute right-0 top-full mt-2 w-44 bg-white border border-gray-100 rounded-xl shadow-lg z-50 py-1"
-                 style="display: none;">
-                <a href="/login"
-                   class="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                    </svg>
-                    Login Admin
-                </a>
             </div>
+
+            <div id="mobileMenu" class="hidden lg:hidden flex-col gap-4 pb-5 font-medium text-gray-700 border-t border-gray-100 pt-4 mt-1">
+                <a href="/" class="hover:text-[#bf9000] transition py-1">Beranda</a>
+                <a href="/tentang-kami" class="hover:text-[#bf9000] transition py-1">Tentang Kami</a>
+                <a href="/program-akademik" class="hover:text-[#bf9000] transition py-1">Program Akademik</a>
+                <a href="/#berita" class="hover:text-[#bf9000] transition py-1">Berita</a>
+                <div class="border-t border-gray-100 pt-3 flex flex-col gap-3">
+                    <a href="/ppdb" class="bg-[#bf9000] hover:bg-[#a37a00] text-white font-bold py-2.5 px-6 rounded-full text-center shadow-md transition">
+                        PPDB Online
+                    </a>
+                    <a href="/login" class="text-xs text-gray-400 text-center hover:text-[#bf9000] transition py-1">
+                        Akses Login Admin
+                    </a>
+                </div>
+            </div>
+
         </div>
     </div>
-
-    {{-- Kanan mobile: ☰ saja --}}
-    <button id="menuButton"
-            class="lg:hidden text-3xl text-[#bf9000]">
-        ☰
-    </button>
-
-</div>
-
 {{-- Desktop: hanya tombol PPDB --}}
             <div class="hidden lg:flex items-center gap-3">
                 <a href="/ppdb"
