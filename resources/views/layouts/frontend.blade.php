@@ -41,11 +41,6 @@
             </div>
 
             <div class="hidden lg:flex items-center gap-5">
-                <a href="/login"
-                   class="font-semibold text-gray-500 hover:text-[#bf9000] transition">
-                    Login Admin
-                </a>
-
                 <a href="/ppdb"
                    class="bg-[#bf9000] hover:bg-[#a37a00] text-white font-bold py-2.5 px-6 rounded-full shadow-md transition duration-300">
                     PPDB Online
@@ -80,11 +75,6 @@
             <a href="/#berita"
                class="hover:text-[#bf9000] transition">
                 Berita
-            </a>
-
-            <a href="/login"
-               class="hover:text-[#bf9000] transition">
-                Login Admin
             </a>
 
             <a href="/ppdb"
@@ -142,8 +132,9 @@
             </div>
 
         </div>
-        <div class="mt-8 pt-8 border-t border-gray-800 text-center text-sm text-gray-500">
-            &copy; {{ date('Y') }} PesMaQu Baitur Ridhwan. All rights reserved.
+        <div class="mt-8 pt-8 border-t border-gray-800 text-center text-sm text-gray-500 flex flex-col md:flex-row justify-center items-center gap-4">
+            <span>&copy; {{ date('Y') }} PesMaQu Baitur Ridhwan. All rights reserved.</span>
+            <a href="/login" class="hover:text-gray-300 transition">| Akses Admin</a>
         </div>
     </div>
 </footer>
