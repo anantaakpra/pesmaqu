@@ -79,4 +79,12 @@ class NewsController extends Controller
         $news = News::findOrFail($id);
         return view('news.show', compact('news'));
     }
+    public function index()
+    {
+    // Ambil semua berita terbaru, batasi 9 berita per halaman
+    $news = News::latest()->paginate(9);
+
+    // Kirim data ke file view yang ada di folder resources/views/news/index.blade.php
+    return view('news.index', compact('news'));
+    }
 }

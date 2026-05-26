@@ -57,9 +57,15 @@
         </div>
 
         {{-- Indikator Titik (Dots) otomatis --}}
-        <div id="newsDots" class="flex justify-center gap-2 mt-6"></div>
+        <div id="newsDots" class="flex justify-center gap-2 mt-6 mb-8"></div>
 
-    </div>
+        <div class="flex justify-center mt-4">
+            <a href="/berita" class="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-[#bf9000] text-[#bf9000] font-bold rounded-full hover:bg-[#bf9000] hover:text-white transition duration-300 shadow-sm group">
+                Lihat Semua Berita
+                <span class="transform group-hover:translate-x-1 transition duration-200">→</span>
+            </a>
+        </div>
+        </div>
 </div>
 
 <style>
