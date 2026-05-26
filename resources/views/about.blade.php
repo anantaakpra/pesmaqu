@@ -83,13 +83,14 @@
                         Lokasi kami berada tepat di perbatasan strategis antara Kota Malang dan Kabupaten Malang (kawasan Malang Barat), memberikan kemudahan akses mobilitas yang luar biasa dekat bagi santri yang menempuh perkuliahan di kampus-kampus besar seperti <strong>UMM, UIN Maliki Malang, dan UNISMA</strong>.
                     </p>
                 </div>
-                <div class="w-full h-48 md:h-64 bg-slate-100 rounded-2xl border border-slate-200 overflow-hidden relative flex flex-col items-center justify-center p-6 text-center shadow-inner">
-                    <span class="text-3xl mb-2">📍</span>
-                    <span class="font-bold text-slate-800 text-sm">Eduhill Residence 1, Landungsari</span>
-                    <span class="text-xs text-slate-400 mt-1">Kec. Dau, Kabupaten Malang, East Java</span>
-                    <div class="absolute bottom-4">
-                        <span class="text-xs font-bold text-[#bf9000] bg-amber-50 px-3 py-1 rounded-full border border-amber-200">Dekat UMM / UIN / UNISMA</span>
-                    </div>
+                <div class="w-full h-64 md:h-80 rounded-3xl border border-slate-200 overflow-hidden shadow-sm relative group">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=Eduhill%20Residence%201,%20Landungsari,%20Dau,%20Malang&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                        class="w-full h-full border-0 grayscale-[10%] hover:grayscale-0 transition-all duration-300" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
             </div>
         </div>
