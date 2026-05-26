@@ -17,7 +17,7 @@
     </div>
     </div>
     
-<div id="berita" class="py-20 px-4 md:px-8 bg-gray-50 scroll-mt-24">
+<div id="berita" class="py-20 px-4 md:px-8 bg-gray-50 scroll-mt-20">
     <div class="max-w-7xl mx-auto">
 
         <div class="text-center mb-12">
@@ -32,7 +32,9 @@
             <div id="newsSlider" class="flex overflow-x-auto gap-6 pb-4 snap-x no-scrollbar cursor-grab select-none">
                 @foreach($news as $item)
                 <div class="flex-none w-[300px] md:w-[340px] bg-white rounded-2xl shadow-sm border border-gray-100 snap-center flex flex-col overflow-hidden transition-transform hover:-translate-y-1 duration-300">
-                    <img src="{{ asset('storage/' . $item->image_url) }}" alt="Gambar Berita" class="w-full h-52 object-cover pointer-events-none" />
+                    
+                    <img src="{{ str_starts_with($item->image_url, 'http') ? $item->image_url : asset('storage/' . $item->image_url) }}" alt="Gambar Berita" class="w-full h-52 object-cover pointer-events-none" />
+                    
                     <div class="p-6 flex flex-col flex-grow">
                         <div class="flex items-center gap-2 text-gray-400 text-xs font-medium mb-3">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
