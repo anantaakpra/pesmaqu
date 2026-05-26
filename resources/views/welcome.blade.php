@@ -3,7 +3,7 @@
 @section('title', 'Beranda')
 
 @section('content')
-    <div class="hero min-h-[70vh] bg-gray-800 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2070&auto=format&fit=crop');">
+    <div class="hero min-h-[calc(100vh-5rem)] bg-gray-800 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2070&auto=format&fit=crop');">
     <div class="hero-overlay bg-black bg-opacity-60"></div>
     <div class="hero-content text-center text-neutral-content py-20">
         <div class="max-w-4xl">
