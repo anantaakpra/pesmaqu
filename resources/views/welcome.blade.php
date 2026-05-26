@@ -17,9 +17,9 @@
     </div>
     </div>
     
-    <div id="berita" class="py-20 px-4 md:px-8 bg-gray-50">
+<div id="berita" class="py-20 px-4 md:px-8 bg-gray-50">
     <div class="max-w-7xl mx-auto">
-        
+
         <div class="text-center mb-12">
             <h4 class="text-[#bf9000] font-bold text-sm uppercase tracking-widest mb-2">Berita Terbaru</h4>
             <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Informasi & Kegiatan Terkini</h2>
@@ -29,34 +29,25 @@
         </div>
 
         <div class="relative px-12 md:px-16">
-            
+
             <button onclick="scrollSlider(-1)"
                 class="absolute left-0 top-1/2 -translate-y-1/2 bg-[#bf9000] hover:bg-[#a37a00] text-white w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full shadow-lg transition duration-300 z-10">
                 ←
             </button>
 
-            <div id="newsSlider" class="flex overflow-x-auto gap-6 pb-8 snap-x no-scrollbar cursor-grab select-none">
-                
+            <div id="newsSlider" class="flex overflow-x-auto gap-6 pb-4 snap-x no-scrollbar cursor-grab select-none">
                 @foreach($news as $item)
                 <div class="flex-none w-[300px] md:w-[340px] bg-white rounded-2xl shadow-sm border border-gray-100 snap-center flex flex-col overflow-hidden transition-transform hover:-translate-y-1 duration-300">
-                    
                     <img src="{{ asset('storage/' . $item->image_url) }}" alt="Gambar Berita" class="w-full h-52 object-cover" />
-                    
                     <div class="p-6 flex flex-col flex-grow">
-                        
                         <div class="flex items-center gap-2 text-gray-400 text-xs font-medium mb-3">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                             </svg>
                             <span>{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y') }}</span>
                         </div>
-                        
                         <h3 class="text-xl font-bold mb-2 text-gray-900">{{ $item->title }}</h3>
-                        
-                        <p class="text-gray-500 text-sm line-clamp-2 mb-6">
-                            {{ $item->content }}
-                        </p>
-
+                        <p class="text-gray-500 text-sm line-clamp-2 mb-6">{{ $item->content }}</p>
                         <div class="mt-auto">
                             <a href="/baca/{{ $item->id }}"
                                class="text-[#bf9000] font-bold text-sm hover:text-[#a37a00] transition flex items-center gap-2">
@@ -66,7 +57,6 @@
                     </div>
                 </div>
                 @endforeach
-
             </div>
 
             <button onclick="scrollSlider(1)"
@@ -75,94 +65,83 @@
             </button>
         </div>
 
-        <div class="flex justify-center gap-2 mt-4">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#bf9000]"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-gray-300"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-gray-300"></span>
-        </div>
+        {{-- Dots indicator --}}
+        <div id="newsDots" class="flex justify-center gap-2 mt-6"></div>
 
     </div>
 </div>
-            <div class="flex justify-center gap-4 mt-8">
-                <button onclick="scrollSlider(-1)"
-                    class="bg-[#bf9000] hover:bg-[#a37a00] text-white w-10 h-10 flex items-center justify-center rounded-full shadow-md transition duration-300">
-                    ←
-                </button>
 
-                <button onclick="scrollSlider(1)"
-                    class="bg-[#bf9000] hover:bg-[#a37a00] text-white w-10 h-10 flex items-center justify-center rounded-full shadow-md transition duration-300">
-                    →
-                </button>
-            </div>
-        </div>
+<style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
 
-        <style>
-            .no-scrollbar::-webkit-scrollbar {
-                display: none;
+<script>
+    const slider = document.getElementById('newsSlider');
+    const dotsContainer = document.getElementById('newsDots');
+
+    if (slider) {
+        let isDown = false, startX, scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.classList.add('cursor-grabbing');
+            slider.classList.remove('cursor-grab');
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.classList.remove('cursor-grabbing');
+            slider.classList.add('cursor-grab');
+        });
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.classList.remove('cursor-grabbing');
+            slider.classList.add('cursor-grab');
+        });
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            slider.scrollLeft = scrollLeft - (e.pageX - slider.offsetLeft - startX) * 2;
+        });
+
+        window.scrollSlider = function(dir) {
+            const cardWidth = (slider.querySelector(':scope > div')?.offsetWidth || 340) + 24;
+            slider.scrollBy({ left: dir * cardWidth, behavior: 'smooth' });
+        };
+
+        function buildDots() {
+            const cards = slider.querySelectorAll(':scope > div');
+            const total = cards.length;
+            if (total <= 1) return;
+            const cardW = (slider.querySelector(':scope > div')?.offsetWidth || 340) + 24;
+            const visibleCount = Math.max(1, Math.round(slider.offsetWidth / cardW));
+            const pageCount = Math.max(1, total - visibleCount + 1);
+
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < pageCount; i++) {
+                const dot = document.createElement('span');
+                dot.className = 'w-2.5 h-2.5 rounded-full cursor-pointer transition-colors duration-300 ' + (i === 0 ? 'bg-[#bf9000]' : 'bg-gray-300');
+                dot.addEventListener('click', () => slider.scrollTo({ left: i * cardW, behavior: 'smooth' }));
+                dotsContainer.appendChild(dot);
             }
-            .no-scrollbar {
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-            }
-        </style>
+        }
 
-        <<script>
-            // --- 1. KODE MENU HP ---
-            const menuButton = document.getElementById('menuButton');
-            const mobileMenu = document.getElementById('mobileMenu');
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-
-            // Membuka/menutup menu
-            menuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                mobileMenu.classList.toggle('flex'); // Dinamis menambah flex
+        function updateDots() {
+            const dots = dotsContainer.querySelectorAll('span');
+            if (!dots.length) return;
+            const cardW = (slider.querySelector(':scope > div')?.offsetWidth || 340) + 24;
+            const activeIndex = Math.round(slider.scrollLeft / cardW);
+            dots.forEach((d, i) => {
+                d.classList.toggle('bg-[#bf9000]', i === activeIndex);
+                d.classList.toggle('bg-gray-300', i !== activeIndex);
             });
+        }
 
-            // Otomatis menutup saat link diklik
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenu.classList.remove('flex'); // Dinamis menghapus flex
-                });
-            });
-
-            // --- 2. KODE DRAG TO SCROLL BERITA ---
-            const slider = document.getElementById('newsSlider');
-            
-            // Proteksi: Script hanya berjalan JIKA elemen newsSlider ada di halaman tersebut
-            if (slider) {
-                let isDown = false;
-                let startX;
-                let scrollLeft;
-
-                slider.addEventListener('mousedown', (e) => {
-                    isDown = true;
-                    slider.classList.add('cursor-grabbing');
-                    slider.classList.remove('cursor-grab');
-                    startX = e.pageX - slider.offsetLeft;
-                    scrollLeft = slider.scrollLeft;
-                });
-
-                slider.addEventListener('mouseleave', () => {
-                    isDown = false;
-                    slider.classList.add('cursor-grab');
-                    slider.classList.remove('cursor-grabbing');
-                });
-
-                slider.addEventListener('mouseup', () => {
-                    isDown = false;
-                    slider.classList.add('cursor-grab');
-                    slider.classList.remove('cursor-grabbing');
-                });
-
-                slider.addEventListener('mousemove', (e) => {
-                    if (!isDown) return;
-                    e.preventDefault();
-                    const x = e.pageX - slider.offsetLeft;
-                    const walk = (x - startX) * 2;
-                    slider.scrollLeft = scrollLeft - walk;
-                });
-            }
-        </script>
-    </div>
+        slider.addEventListener('scroll', updateDots, { passive: true });
+        window.addEventListener('resize', buildDots);
+        setTimeout(buildDots, 100);
+    }
+</script>
 @endsection
