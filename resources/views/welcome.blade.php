@@ -73,48 +73,63 @@
             }
         </style>
 
-        <script>
-            function scrollSlider(direction) {
-                            // --- KODE DRAG TO SCROLL BERITA ---
-                const slider = document.getElementById('newsSlider');
+        <<script>
+            // --- 1. KODE MENU HP ---
+            const menuButton = document.getElementById('menuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+
+            // Membuka/menutup menu
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex'); // Dinamis menambah flex
+            });
+
+            // Otomatis menutup saat link diklik
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex'); // Dinamis menghapus flex
+                });
+            });
+
+            // --- 2. KODE DRAG TO SCROLL BERITA ---
+            const slider = document.getElementById('newsSlider');
+            
+            // Proteksi: Script hanya berjalan JIKA elemen newsSlider ada di halaman tersebut
+            if (slider) {
                 let isDown = false;
                 let startX;
                 let scrollLeft;
 
-                // Saat klik kiri mouse ditekan
                 slider.addEventListener('mousedown', (e) => {
                     isDown = true;
-                    slider.classList.add('cursor-grabbing'); // Ubah kursor jadi "tangan mengepal"
+                    slider.classList.add('cursor-grabbing');
                     slider.classList.remove('cursor-grab');
                     startX = e.pageX - slider.offsetLeft;
                     scrollLeft = slider.scrollLeft;
                 });
 
-                // Saat kursor mouse keluar dari area berita
                 slider.addEventListener('mouseleave', () => {
                     isDown = false;
                     slider.classList.add('cursor-grab');
                     slider.classList.remove('cursor-grabbing');
                 });
 
-                // Saat klik kiri mouse dilepas
                 slider.addEventListener('mouseup', () => {
                     isDown = false;
                     slider.classList.add('cursor-grab');
                     slider.classList.remove('cursor-grabbing');
                 });
 
-                // Saat mouse digeser (dalam kondisi ditekan)
                 slider.addEventListener('mousemove', (e) => {
-                    if (!isDown) return; // Hentikan jika mouse tidak ditahan
-                    e.preventDefault(); // Mencegah perilaku default browser
-                    
+                    if (!isDown) return;
+                    e.preventDefault();
                     const x = e.pageX - slider.offsetLeft;
-                    const walk = (x - startX) * 2; // Angka 2 adalah sensitivitas/kecepatan geser
+                    const walk = (x - startX) * 2;
                     slider.scrollLeft = scrollLeft - walk;
                 });
-                // ----------------------------------
-        }
+            }
         </script>
     </div>
 @endsection

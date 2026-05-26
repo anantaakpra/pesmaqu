@@ -55,7 +55,7 @@
         </div>
 
         <div id="mobileMenu"
-            class="hidden lg:hidden flex flex-col gap-4 pb-4 font-medium text-gray-700 border-t border-gray-100 pt-4 mt-2">
+            class="hidden lg:hidden flex-col gap-4 pb-4 font-medium text-gray-700 border-t border-gray-100 pt-4 mt-2">
 
             <a href="/"
                class="hover:text-[#bf9000] transition">
