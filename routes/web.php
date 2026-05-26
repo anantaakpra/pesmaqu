@@ -11,7 +11,7 @@ use App\Http\Controllers\NewsController;
 Route::get('/baca/{id}', [App\Http\Controllers\NewsController::class, 'show']);
 Route::get('/berita', [NewsController::class, 'index']);
 Route::get('/', function () {
-    $news = News::latest()->take(6)->get(); 
+    $news = News::latest()->take(5)->get(); 
 
     return view('welcome', compact('news')); 
 });

@@ -26,7 +26,7 @@
                 <a href="/" class="hover:text-[#bf9000] border-b-2 border-transparent hover:border-[#bf9000] py-2 transition duration-200">Beranda</a>
                 <a href="/tentang-kami" class="hover:text-[#bf9000] border-b-2 border-transparent hover:border-[#bf9000] py-2 transition duration-200">Tentang Kami</a>
                 <a href="/program-akademik" class="hover:text-[#bf9000] border-b-2 border-transparent hover:border-[#bf9000] py-2 transition duration-200">Program Akademik</a>
-                <a href="/#berita" class="hover:text-[#bf9000] border-b-2 border-transparent hover:border-[#bf9000] py-2 transition duration-200">Berita</a>
+                <a href="/berita" class="hover:text-[#bf9000] border-b-2 border-transparent hover:border-[#bf9000] py-2 transition duration-200">Berita</a>
             </div>
 
             <div class="hidden lg:flex items-center h-full flex-shrink-0 z-10">
@@ -47,7 +47,7 @@
             <a href="/" class="hover:text-[#bf9000] transition py-1">Beranda</a>
             <a href="/tentang-kami" class="hover:text-[#bf9000] transition py-1">Tentang Kami</a>
             <a href="/program-akademik" class="hover:text-[#bf9000] transition py-1">Program Akademik</a>
-            <a href="/#berita" class="hover:text-[#bf9000] transition py-1">Berita</a>
+            <a href="/berita" class="hover:text-[#bf9000] transition py-1">Berita</a>
             <div class="border-t border-gray-100 pt-3 flex flex-col gap-3">
                 <a href="/ppdb" class="bg-[#bf9000] hover:bg-[#a37a00] text-white font-bold py-2.5 px-6 rounded-full text-center shadow-md transition">
                     PPDB Online
