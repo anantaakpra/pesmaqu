@@ -53,13 +53,15 @@
                 <div>
                     <label class="block text-sm font-bold text-slate-700 mb-2">Unggah CV (Curriculum Vitae)</label>
                     <div class="relative flex items-center justify-center w-full">
-                        <label class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer bg-gray-50 hover:bg-gray-100 transition">
-                            <div class="flex flex-col items-center justify-center pt-5 pb-6 text-gray-500">
+                        <label class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer bg-gray-50 hover:bg-gray-100 transition" id="cv-label">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6 text-gray-500 text-center px-4" id="cv-text-container">
                                 <svg class="w-8 h-8 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                                <p class="text-sm font-medium">Klik untuk mengunggah CV</p>
-                                <p class="text-xs mt-1">Format: PDF (Maks. 2MB)</p>
+                                
+                                <p class="text-sm font-medium truncate w-full" id="cv-text">Klik untuk mengunggah CV</p>
+                                <p class="text-xs mt-1" id="cv-subtext">Format: PDF (Maks. 2MB)</p>
                             </div>
-                            <input type="file" name="cv_file" accept=".pdf" required class="hidden" />
+                            
+                            <input type="file" name="cv_file" accept=".pdf" required class="hidden" onchange="updateFileName(this)" />
                         </label>
                     </div>
                 </div>
@@ -74,4 +76,23 @@
         </div>
     </div>
 </div>
+<script>
+    // Fungsi untuk mengubah teks saat file dipilih
+    function updateFileName(input) {
+        const textElement = document.getElementById('cv-text');
+        const subTextElement = document.getElementById('cv-subtext');
+        
+        if (input.files && input.files[0]) {
+            // Ubah teks menjadi nama file yang dipilih
+            textElement.innerText = input.files[0].name;
+            textElement.classList.add('text-[#bf9000]', 'font-bold'); // Beri warna emas
+            subTextElement.innerText = "File berhasil dilampirkan ✓";
+        } else {
+            // Kembalikan ke teks awal jika batal memilih
+            textElement.innerText = "Klik untuk mengunggah CV";
+            textElement.classList.remove('text-[#bf9000]', 'font-bold');
+            subTextElement.innerText = "Format: PDF (Maks. 2MB)";
+        }
+    }
+</script>
 @endsection
