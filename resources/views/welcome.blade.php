@@ -17,39 +17,72 @@
     </div>
     </div>
     
-    <div id="berita" class="py-20 px-4 md:px-12 bg-white">
-        <h2 class="text-3xl font-bold text-center mb-12">Berita Terkini</h2>
+    <div id="berita" class="py-20 px-4 md:px-8 bg-gray-50">
+    <div class="max-w-7xl mx-auto">
         
-        <div class="relative max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <h4 class="text-[#bf9000] font-bold text-sm uppercase tracking-widest mb-2">Berita Terbaru</h4>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Informasi & Kegiatan Terkini</h2>
+            <p class="text-gray-500 max-w-2xl mx-auto text-sm md:text-base">
+                Dapatkan informasi terbaru seputar kegiatan, prestasi, dan program PesMaQu
+            </p>
+        </div>
+
+        <div class="relative px-12 md:px-16">
             
-            <div id="newsSlider" class="flex overflow-x-auto gap-6 pb-4 snap-x no-scrollbar mx-auto w-fit max-w-full px-2 cursor-grab select-none">
+            <button onclick="scrollSlider(-1)"
+                class="absolute left-0 top-1/2 -translate-y-1/2 bg-[#bf9000] hover:bg-[#a37a00] text-white w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full shadow-lg transition duration-300 z-10">
+                ←
+            </button>
+
+            <div id="newsSlider" class="flex overflow-x-auto gap-6 pb-8 snap-x no-scrollbar cursor-grab select-none">
                 
                 @foreach($news as $item)
-                
-                <div class="flex-none w-80 bg-white border border-gray-200 shadow-xl rounded-xl snap-center flex flex-col">
-                    <figure>
-                        <img src="{{ $item->image_url }}" alt="Gambar Berita" class="w-full h-48 object-cover rounded-t-xl" />
-                    </figure>
+                <div class="flex-none w-[300px] md:w-[340px] bg-white rounded-2xl shadow-sm border border-gray-100 snap-center flex flex-col overflow-hidden transition-transform hover:-translate-y-1 duration-300">
+                    
+                    <img src="{{ asset('storage/' . $item->image_url) }}" alt="Gambar Berita" class="w-full h-52 object-cover" />
                     
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">{{ $item->title }}</h3>
                         
-                        <p class="text-gray-600 line-clamp-3 mb-4">
+                        <div class="flex items-center gap-2 text-gray-400 text-xs font-medium mb-3">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                            <span>{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y') }}</span>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold mb-2 text-gray-900">{{ $item->title }}</h3>
+                        
+                        <p class="text-gray-500 text-sm line-clamp-2 mb-6">
                             {{ $item->content }}
                         </p>
 
-                        <div class="card-actions justify-end mt-auto">
+                        <div class="mt-auto">
                             <a href="/baca/{{ $item->id }}"
-                               class="text-[#bf9000] font-semibold hover:text-[#a37a00] transition duration-300">
-                                Baca Selengkapnya →
+                               class="text-[#bf9000] font-bold text-sm hover:text-[#a37a00] transition flex items-center gap-2">
+                                Baca Selengkapnya <span class="text-lg leading-none">→</span>
                             </a>
                         </div>
                     </div>
                 </div>
-                
                 @endforeach
-                </div>
 
+            </div>
+
+            <button onclick="scrollSlider(1)"
+                class="absolute right-0 top-1/2 -translate-y-1/2 bg-[#bf9000] hover:bg-[#a37a00] text-white w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full shadow-lg transition duration-300 z-10">
+                →
+            </button>
+        </div>
+
+        <div class="flex justify-center gap-2 mt-4">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#bf9000]"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-gray-300"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-gray-300"></span>
+        </div>
+
+    </div>
+</div>
             <div class="flex justify-center gap-4 mt-8">
                 <button onclick="scrollSlider(-1)"
                     class="bg-[#bf9000] hover:bg-[#a37a00] text-white w-10 h-10 flex items-center justify-center rounded-full shadow-md transition duration-300">
