@@ -39,6 +39,14 @@ class RegistrationController extends Controller
 
         return redirect('/ppdb')->with('success', 'Pendaftaran berhasil dikirim! Kami akan segera menghubungi Anda.');
     }
+
+    public function index()
+    {
+        // Mengambil semua data pendaftar dari yang paling baru
+        $pendaftar = \App\Models\Registration::latest()->get();
+        
+        return view('data-pendaftar', compact('pendaftar'));
+    }
     // Fungsi untuk mengubah status pendaftar dari Dashboard Admin
     public function updateStatus(Request $request, $id)
     {

@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function () {
 // Rute PPDB Online
 Route::get('/ppdb', [RegistrationController::class, 'create']);
 Route::post('/ppdb', [RegistrationController::class, 'store']);
+Route::get('/data-pendaftar', [App\Http\Controllers\RegistrationController::class, 'index']);
 
 Route::patch('/ppdb/{id}/status', [RegistrationController::class, 'updateStatus'])->middleware(['auth', 'verified']);
 require __DIR__.'/auth.php';
