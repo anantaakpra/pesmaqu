@@ -75,54 +75,46 @@
 
         <script>
             function scrollSlider(direction) {
+                            // --- KODE DRAG TO SCROLL BERITA ---
                 const slider = document.getElementById('newsSlider');
-                // Menggeser sejauh lebar kartu (320px) + gap (24px)
-                const scrollAmount = 344; 
+                let isDown = false;
+                let startX;
+                let scrollLeft;
 
-                slider.scrollBy({
-                    left: direction * scrollAmount,
-                    behavior: 'smooth'
+                // Saat klik kiri mouse ditekan
+                slider.addEventListener('mousedown', (e) => {
+                    isDown = true;
+                    slider.classList.add('cursor-grabbing'); // Ubah kursor jadi "tangan mengepal"
+                    slider.classList.remove('cursor-grab');
+                    startX = e.pageX - slider.offsetLeft;
+                    scrollLeft = slider.scrollLeft;
                 });
-            }
-                        // --- KODE DRAG TO SCROLL BERITA ---
-            const slider = document.getElementById('newsSlider');
-            let isDown = false;
-            let startX;
-            let scrollLeft;
 
-            // Saat klik kiri mouse ditekan
-            slider.addEventListener('mousedown', (e) => {
-                isDown = true;
-                slider.classList.add('cursor-grabbing'); // Ubah kursor jadi "tangan mengepal"
-                slider.classList.remove('cursor-grab');
-                startX = e.pageX - slider.offsetLeft;
-                scrollLeft = slider.scrollLeft;
-            });
+                // Saat kursor mouse keluar dari area berita
+                slider.addEventListener('mouseleave', () => {
+                    isDown = false;
+                    slider.classList.add('cursor-grab');
+                    slider.classList.remove('cursor-grabbing');
+                });
 
-            // Saat kursor mouse keluar dari area berita
-            slider.addEventListener('mouseleave', () => {
-                isDown = false;
-                slider.classList.add('cursor-grab');
-                slider.classList.remove('cursor-grabbing');
-            });
+                // Saat klik kiri mouse dilepas
+                slider.addEventListener('mouseup', () => {
+                    isDown = false;
+                    slider.classList.add('cursor-grab');
+                    slider.classList.remove('cursor-grabbing');
+                });
 
-            // Saat klik kiri mouse dilepas
-            slider.addEventListener('mouseup', () => {
-                isDown = false;
-                slider.classList.add('cursor-grab');
-                slider.classList.remove('cursor-grabbing');
-            });
-
-            // Saat mouse digeser (dalam kondisi ditekan)
-            slider.addEventListener('mousemove', (e) => {
-                if (!isDown) return; // Hentikan jika mouse tidak ditahan
-                e.preventDefault(); // Mencegah perilaku default browser
-                
-                const x = e.pageX - slider.offsetLeft;
-                const walk = (x - startX) * 2; // Angka 2 adalah sensitivitas/kecepatan geser
-                slider.scrollLeft = scrollLeft - walk;
-            });
-            // ----------------------------------
+                // Saat mouse digeser (dalam kondisi ditekan)
+                slider.addEventListener('mousemove', (e) => {
+                    if (!isDown) return; // Hentikan jika mouse tidak ditahan
+                    e.preventDefault(); // Mencegah perilaku default browser
+                    
+                    const x = e.pageX - slider.offsetLeft;
+                    const walk = (x - startX) * 2; // Angka 2 adalah sensitivitas/kecepatan geser
+                    slider.scrollLeft = scrollLeft - walk;
+                });
+                // ----------------------------------
+        }
         </script>
     </div>
 @endsection
