@@ -1,12 +1,38 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\News;
-use Illuminate\Http\Request;
+use Illuminate\Http\Request; // Pastikan ini ada di bagian atas file
 
 class NewsController extends Controller
 {
+    public function index(Request $request)
+    {
+        $query = News::query();
+
+        // 1. FITUR SEARCH (Cari berdasarkan judul atau isi)
+        if ($request->has('search') && $request->search != '') {
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('title', 'like', '%' . $searchTerm . '%')
+                  ->orWhere('content', 'like', '%' . $searchTerm . '%');
+            });
+        }
+
+        // 2. FITUR FILTER (Urutkan dari yang Terbaru atau Terlama)
+        $filter = $request->input('filter', 'terbaru');
+        if ($filter == 'terlama') {
+            $query->oldest();
+        } else {
+            $query->latest(); // Default
+        }
+
+        // 3. PAGINATION (Gunakan appends agar URL query tidak hilang saat pindah halaman)
+        $news = $query->paginate(9)->appends($request->query());
+
+        return view('news.index', compact('news'));
+    }
+
     // 1. Fungsi untuk menampilkan halaman form tambah berita
     public function create()
     {
@@ -78,13 +104,5 @@ class NewsController extends Controller
     {
         $news = News::findOrFail($id);
         return view('news.show', compact('news'));
-    }
-    public function index()
-    {
-    // Ambil semua berita terbaru, batasi 9 berita per halaman
-    $news = News::latest()->paginate(9);
-
-    // Kirim data ke file view yang ada di folder resources/views/news/index.blade.php
-    return view('news.index', compact('news'));
     }
 }
