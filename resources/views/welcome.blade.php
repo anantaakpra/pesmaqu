@@ -17,8 +17,8 @@
     </div>
     </div>
     
-<div id="berita" class="py-20 px-4 md:px-8 bg-gray-50 scroll-mt-20">
-    <div class="max-w-7xl mx-auto">
+<div id="berita" class="pt-12 pb-24 px-4 md:px-8 bg-gray-50 scroll-mt-20 w-full">
+    <div class="max-w-7xl mx-auto w-full">
 
         <div class="text-center mb-12">
             <h4 class="text-[#bf9000] font-bold text-sm uppercase tracking-widest mb-2">Berita Terbaru</h4>
@@ -28,8 +28,8 @@
             </p>
         </div>
 
-        <div class="relative px-2 md:px-6">
-            <div id="newsSlider" class="flex overflow-x-auto gap-6 pb-4 snap-x no-scrollbar cursor-grab select-none">
+        <div class="relative w-full px-2 md:px-4">
+            <div id="newsSlider" class="flex overflow-x-auto gap-6 pb-6 snap-x no-scrollbar cursor-grab select-none w-full">
                 @foreach($news as $item)
                 <div class="flex-none w-[300px] md:w-[340px] bg-white rounded-2xl shadow-sm border border-gray-100 snap-center flex flex-col overflow-hidden transition-transform hover:-translate-y-1 duration-300">
                     
@@ -42,12 +42,12 @@
                             </svg>
                             <span>{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y') }}</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-2 text-gray-900 select-text">{{ $item->title }}</h3>
-                        <p class="text-gray-500 text-sm line-clamp-2 mb-6 select-text">{{ $item->content }}</p>
+                        <h3 class="text-xl font-bold mb-2 text-gray-900 select-text leading-snug">{{ $item->title }}</h3>
+                        <p class="text-gray-500 text-sm line-clamp-2 mb-6 select-text leading-relaxed">{{ $item->content }}</p>
                         <div class="mt-auto">
                             <a href="/baca/{{ $item->id }}"
-                               class="text-[#bf9000] font-bold text-sm hover:text-[#a37a00] transition flex items-center gap-2">
-                                Baca Selengkapnya <span class="text-lg leading-none">→</span>
+                               class="text-[#bf9000] font-bold text-sm hover:text-[#a37a00] transition flex items-center gap-2 group">
+                                Baca Selengkapnya <span class="transform group-hover:translate-x-1 transition duration-200 text-lg leading-none">→</span>
                             </a>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
             </div>
         </div>
 
-        {{-- Dots indicator --}}
+        {{-- Indikator Titik (Dots) otomatis --}}
         <div id="newsDots" class="flex justify-center gap-2 mt-6"></div>
 
     </div>
