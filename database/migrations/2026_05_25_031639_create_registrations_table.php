@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
 {
     Schema::create('registrations', function (Blueprint $table) {
-        $table->id();
-        $table->string('name'); // Nama Lengkap Calon Siswa
-        $table->string('email'); // Email Pendaftar
-        $table->string('phone'); // Nomor WhatsApp
-        $table->string('previous_school'); // Asal Sekolah
-        $table->string('status')->default('Menunggu Seleksi'); // Status pendaftaran bawaan
+        $table->string('nama_lengkap');
+        $table->string('nomor_wa');
+        $table->string('asal_instansi');
+        $table->string('jurusan');
+        $table->string('cv_file'); // Untuk menyimpan path/link file PDF
+        $table->string('status')->default('Menunggu Seleksi');
         $table->timestamps();
     });
 }

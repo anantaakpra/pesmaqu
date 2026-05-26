@@ -75,12 +75,21 @@
 
                 <div>
                     <h3 class="text-lg font-bold text-white mb-4">Hubungi Kami</h3>
-                    <ul class="space-y-2 text-sm">
-                        <li>WhatsApp: 0812-3456-7890</li>
-                        <li>Email: info@pesmaqu.sch.id</li>
+                    <ul class="space-y-3 text-sm">
+                        <li>
+                            <a href="https://wa.me/6285649704794" target="_blank" class="flex items-center gap-2 hover:text-[#bf9000] transition duration-300">
+                                <span class="text-[#bf9000] text-lg">✆</span>
+                                WhatsApp: +62 856-4970-4794
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:pesmaqubaiturridhwan@gmail.com" class="flex items-center gap-2 hover:text-[#bf9000] transition duration-300">
+                                <span class="text-[#bf9000] text-lg">✉</span>
+                                Email: pesmaqubaiturridhwan@gmail.com
+                            </a>
+                        </li>
                     </ul>
                 </div>
-
                 <div>
                     <h3 class="text-lg font-bold text-white mb-4">Media Sosial</h3>
                     <p class="text-sm mb-4">Ikuti kegiatan keseharian santri kami melalui platform berikut:</p>

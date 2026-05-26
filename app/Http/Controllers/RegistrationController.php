@@ -13,28 +13,31 @@ class RegistrationController extends Controller
         return view('ppdb.create');
     }
 
-    // Menyimpan data pendaftar ke database
     public function store(Request $request)
     {
-        // Validasi input
+        // 1. Validasi input dari user
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'previous_school' => 'required',
+            'nama_lengkap' => 'required|string|max:255',
+            'nomor_wa' => 'required|string|max:20',
+            'asal_instansi' => 'required|string|max:255',
+            'jurusan' => 'required|string|max:255',
+            'cv_file' => 'required|file|mimes:pdf|max:2048', // Wajib PDF, maksimal 2MB
         ]);
 
-        // Simpan ke database
+        // 2. Simpan file CV ke folder storage/app/public/cv_uploads
+        $cvPath = $request->file('cv_file')->store('cv_uploads', 'public');
+
+        // 3. Masukkan data ke Database
         Registration::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'previous_school' => $request->previous_school,
-            'status' => 'Menunggu Seleksi'
+            'nama_lengkap' => $request->nama_lengkap,
+            'nomor_wa' => $request->nomor_wa,
+            'asal_instansi' => $request->asal_instansi,
+            'jurusan' => $request->jurusan,
+            'cv_file' => $cvPath,
+            'status' => 'Menunggu Seleksi' // Status default
         ]);
 
-        // Kembalikan ke halaman form dengan pesan sukses
-        return back()->with('success', 'Pendaftaran berhasil! Tim kami akan segera menghubungi Anda melalui WhatsApp atau Email.');
+        return redirect('/ppdb')->with('success', 'Pendaftaran berhasil dikirim! Kami akan segera menghubungi Anda.');
     }
     // Fungsi untuk mengubah status pendaftar dari Dashboard Admin
     public function updateStatus(Request $request, $id)

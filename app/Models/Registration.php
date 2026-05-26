@@ -6,12 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Registration extends Model
 {
-    // Mengizinkan kolom-kolom ini diisi dari form
+    use HasFactory;
+
+    // Pastikan field ini sesuai dengan yang ada di Controller
     protected $fillable = [
-        'name',
-        'email',
-        'phone',
-        'previous_school',
-        'status',
+        'nama_lengkap', 
+        'nomor_wa', 
+        'asal_instansi', 
+        'jurusan', 
+        'cv_file', 
+        'status'
     ];
 }
