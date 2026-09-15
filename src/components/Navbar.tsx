@@ -65,13 +65,15 @@ export default function Navbar() {
 
         {/* Action Button */}
         <div className="hidden lg:flex items-center gap-4">
-          <Link
-            href="/ppdb"
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdZuoppDYTXkAi6raO6RN_IUypJ_-0SIjAQuRqigUDDo41r-A/viewform"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-[#bf9000] hover:bg-[#a37a00] text-white font-bold py-2.5 px-6 rounded-full shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2 text-sm transform hover:-translate-y-0.5"
           >
             <GraduationCap className="w-4 h-4" />
             PPDB Online
-          </Link>
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -102,14 +104,16 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="border-t border-gray-100 pt-4 flex flex-col gap-3">
-            <Link
-              href="/ppdb"
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdZuoppDYTXkAi6raO6RN_IUypJ_-0SIjAQuRqigUDDo41r-A/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
               className="bg-[#bf9000] hover:bg-[#a37a00] text-white font-bold py-3 px-6 rounded-full text-center shadow-md transition flex items-center justify-center gap-2 text-sm"
             >
               <GraduationCap className="w-4 h-4" />
               PPDB Online
-            </Link>
+            </a>
             <Link
               href="/login"
               onClick={() => setIsOpen(false)}

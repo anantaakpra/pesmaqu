@@ -61,13 +61,15 @@ export default async function HomePage() {
               <ArrowRight className="w-5 h-5" />
             </Link>
 
-            <Link
-              href="/ppdb"
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdZuoppDYTXkAi6raO6RN_IUypJ_-0SIjAQuRqigUDDo41r-A/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white font-bold py-4 px-8 rounded-full border border-white/30 backdrop-blur-sm transition duration-300 flex items-center justify-center gap-2 text-base"
             >
               <Award className="w-5 h-5 text-[#bf9000]" />
               <span>Daftar PPDB Online</span>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -160,13 +162,15 @@ export default async function HomePage() {
             Bergabunglah bersama keluarga besar PesMaQu Baitur Ridhwan Malang. Pendaftaran dibuka secara online untuk mahasiswa aktif putra.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/ppdb"
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdZuoppDYTXkAi6raO6RN_IUypJ_-0SIjAQuRqigUDDo41r-A/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full sm:w-auto bg-[#bf9000] hover:bg-[#a37a00] text-white font-bold py-4 px-8 rounded-full shadow-lg transition duration-300 flex items-center justify-center gap-2"
             >
               <Award className="w-5 h-5" />
               <span>Daftar Sekarang</span>
-            </Link>
+            </a>
             <Link
               href="/tentang-kami"
               className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-4 px-8 rounded-full border border-slate-700 transition duration-300 flex items-center justify-center gap-2"

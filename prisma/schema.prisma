@@ -32,16 +32,3 @@ model News {
   @@map("news")
 }
 
-model Registration {
-  id            Int       @id @default(autoincrement())
-  nama_lengkap  String
-  nomor_wa      String
-  asal_instansi String
-  jurusan       String
-  cv_file       String    @db.Text
-  status        String    @default("Menunggu Seleksi")
-  created_at    DateTime? @default(now())
-  updated_at    DateTime? @updatedAt
-
-  @@map("registrations")
-}

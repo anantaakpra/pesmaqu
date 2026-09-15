@@ -19,25 +19,12 @@ export default async function DashboardPage() {
   }
 
   let news: any[] = [];
-  let registrations: any[] = [];
   let totalNews = 0;
-  let totalRegistrants = 0;
-  let accepted = 0;
-  let pending = 0;
 
   try {
-    const [fetchedNews, fetchedRegistrations] = await Promise.all([
-      prisma.news.findMany({ orderBy: { created_at: 'desc' } }),
-      prisma.registration.findMany({ orderBy: { created_at: 'desc' } }),
-    ]);
-
+    const fetchedNews = await prisma.news.findMany({ orderBy: { created_at: 'desc' } });
     news = fetchedNews;
-    registrations = fetchedRegistrations;
-
     totalNews = news.length;
-    totalRegistrants = registrations.length;
-    accepted = registrations.filter((r) => r.status === 'Diterima').length;
-    pending = registrations.filter((r) => r.status === 'Menunggu Seleksi').length;
   } catch (error) {
     console.error('Error fetching dashboard data:', error);
   }
@@ -46,12 +33,8 @@ export default async function DashboardPage() {
     <div className="bg-slate-50 min-h-screen">
       <DashboardClient
         initialNews={news}
-        initialRegistrations={registrations}
         stats={{
           totalNews,
-          totalRegistrants,
-          accepted,
-          pending,
         }}
       />
     </div>
