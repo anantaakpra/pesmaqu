@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
@@ -21,10 +22,10 @@ model User {
 }
 
 model News {
-  id        Int       @id @default(autoincrement())
-  title     String
-  image_url String?   @db.Text
-  content   String    @db.Text
+  id         Int       @id @default(autoincrement())
+  title      String
+  image_url  String?   @db.Text
+  content    String    @db.Text
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
 
