@@ -18,19 +18,16 @@ export async function POST(request: Request) {
       where: { email },
     });
 
-    // If no user exists at all in the database, seed default admin
-    if (!user) {
-      const userCount = await prisma.user.count();
-      if (userCount === 0 && email === 'admin@pesmaqu.com') {
-        const hashedPassword = await hashPassword(password);
-        user = await prisma.user.create({
-          data: {
-            name: 'Admin PesMaQu',
-            email: 'admin@pesmaqu.com',
-            password: hashedPassword,
-          },
-        });
-      }
+    // If user does not exist and it's admin@pesmaqu.com, auto-register as default admin
+    if (!user && email === 'admin@pesmaqu.com') {
+      const hashedPassword = await hashPassword(password);
+      user = await prisma.user.create({
+        data: {
+          name: 'Admin PesMaQu',
+          email: 'admin@pesmaqu.com',
+          password: hashedPassword,
+        },
+      });
     }
 
     if (!user) {
