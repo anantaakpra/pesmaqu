@@ -19,9 +19,10 @@ yarn-error.log*
 _laravel_backup/
 /vendor
 
-# System
+# System & Build Cache
 .DS_Store
 Thumbs.db
 *.log
+*.tsbuildinfo
 /.vscode
 /.idea

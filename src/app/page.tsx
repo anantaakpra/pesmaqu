@@ -25,14 +25,15 @@ export default async function HomePage() {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center justify-center bg-slate-900 overflow-hidden">
+      <section className="relative min-h-[85vh] flex items-center justify-center bg-slate-950 overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 transform scale-105 transition duration-1000"
+          id="hero-bg"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-45 transform scale-105 transition duration-1000"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2070&auto=format&fit=crop')`,
+            backgroundImage: `url('/bg%20awal.png')`,
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-slate-950/50" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 py-20 text-center text-white">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#bf9000]/20 border border-[#bf9000]/40 text-[#fef08a] text-xs md:text-sm font-semibold mb-6 backdrop-blur-sm animate-fade-in">
@@ -149,8 +150,17 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white relative overflow-hidden">
+      {/* CTA Section (PPDB) */}
+      <section className="py-24 px-4 bg-slate-950 text-white relative overflow-hidden">
+        {/* Background Image dipindahkan dari Hero */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-45 transform scale-105"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2070&auto=format&fit=crop')`,
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/60 to-slate-950/70" />
+
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <span className="text-[#bf9000] font-bold text-xs uppercase tracking-widest block mb-3">
             Penerimaan Santri Baru (PPDB)
@@ -173,7 +183,7 @@ export default async function HomePage() {
             </a>
             <Link
               href="/tentang-kami"
-              className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-4 px-8 rounded-full border border-slate-700 transition duration-300 flex items-center justify-center gap-2"
+              className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-slate-200 font-bold py-4 px-8 rounded-full border border-white/20 backdrop-blur-sm transition duration-300 flex items-center justify-center gap-2"
             >
               <MapPin className="w-5 h-5 text-[#bf9000]" />
               <span>Lokasi &amp; Kontak</span>
