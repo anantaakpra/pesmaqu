@@ -83,7 +83,7 @@ export default function LoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@pesmaqu.com"
+                  placeholder="masukkan email administrator"
                   className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-[#bf9000] focus:ring-2 focus:ring-[#bf9000]/20 outline-none transition bg-slate-50 focus:bg-white text-gray-800 text-sm font-medium"
                 />
               </div>
